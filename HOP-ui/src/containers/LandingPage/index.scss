@@ -1,0 +1,48 @@
+.landingPage_Button{
+    margin: 20px 10px;
+    margin-bottom: 40px;
+  }
+  
+  .landingPage_Button .landing_startButton{
+    font-size: 18px;
+    font-family: system-ui;
+    font-weight: 600;
+    border-radius: 24px;
+    text-transform: none;
+    margin-right: 25px;
+    padding: 8px 22px;
+    
+  }
+  
+  .landingPage_Button .landing_googleAuth{
+    color:#00000089;
+    background-color: white;
+    border-radius: 24px;
+    font-weight: 500;
+    text-transform: none;
+    font-family: system-ui;
+    font-size: 16px;
+    margin-left: 25px;
+    padding: 8px 22px;
+    letter-spacing: 0px;
+    
+  }
+  
+  @media screen and (max-width:769px) {
+    .landingPage_Button{
+      display: flex;
+      flex-direction: column;
+    }
+    .landingPage_Button .landing_startButton{
+      margin-top: 20px;
+      margin-right: 0px;
+      padding: 8px 34px;
+    }
+    .landingPage_Button .landing_googleAuth{
+      margin-top: 20px;
+      margin-left: 0px;
+      padding: 8px 11px;
+    }
+    
+  
+  }
