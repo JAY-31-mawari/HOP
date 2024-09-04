@@ -7,7 +7,7 @@ import BackgroundDesign from '../../assets/Landing_Page/Sign Up.png'
 import HopLogo from '../../assets/Hop-Logo.png'
 import CloseIcon from '../../assets/Landing_Page/Shape.png'
 import SuccessAnimation from '../../assets/Animation Container.png'
-
+import { useMediaQuery } from '@mui/material'
 
 
 function WorkSpace() {
@@ -22,6 +22,7 @@ function WorkSpace() {
 
   const TeamSize = ["1-10", "11-20", "21-30", "31-50", "51 & Above"]
 
+  const isMobile = useMediaQuery('(max-width:769px)');
 
   const handleCreate = (event) => {
     event.preventDefault()
@@ -36,13 +37,19 @@ function WorkSpace() {
 
 
   return (
-    <div style={{display:'flex',justifyContent:'center',alignItems:'center',backgroundColor:'rgba(0,0,0,0.7)',backdropFilter:'blur(7px)',position:'relative'}}>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(7px)', position: 'relative' }}>
       <Box style={{
         display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', backgroundImage: `url(${BackgroundDesign})`, backgroundSize: 'cover', backgroundPosition: 'center', fontFamily:
-          'system-ui', padding: '20px 0', backgroundColor: `${successPopupOpen ? 'rgba(0, 0, 0, 0.5)' : 'white'}`
+          'system-ui', padding: isMobile ? '0' : '20px 0', backgroundColor: `${successPopupOpen ? 'rgba(0, 0, 0, 0.5)' : 'white'}`
       }}>
-        <Box style={{ display: 'flex', justifyContent: 'center', width: '40%', borderRadius: '20px', backgroundColor: 'white' }}>
-          <Box style={{ width: '75%' }}>
+        <Box style={{
+          display: 'flex', justifyContent: 'center', 
+          width: isMobile ? '100%' : '40%',
+          borderRadius: isMobile ? 'none' : '20px',
+          padding: isMobile ? '16px' : '0px', 
+          backgroundColor: 'white'
+        }}>
+          <Box style={{ width: isMobile ? '100%' : '75%' }}>
 
             <Box sx={{ display: 'flex', justifyContent: 'center' }}>
               <img src={HopLogo} alt='Hop-Logo' style={{ height: '80px', width: '80px', margin: '18px 6px' }} />
@@ -146,7 +153,7 @@ function WorkSpace() {
                     value={companyDesc}
                     onChange={(event) => setCompanyDesc(event.target.value)}
                     minRows={2}
-                    style={{ fontSize: '18px', padding: '4px 8px', color: '#7B85E4', backgroundColor: 'rgba(250, 250, 250, 1)', fontFamily: 'system-ui' }}
+                    style={{ fontSize: '18px', padding: '4px 8px', color: '#7B85E4', backgroundColor: 'rgba(250, 250, 250, 1)', fontFamily: 'system-ui',borderRadius:'15px !important' }}
                     sx={{
                       '& .MuiInputBase-input': {
                         color: '#7B85E4',
@@ -167,8 +174,8 @@ function WorkSpace() {
                     textTransform: 'none',
                     width: '100%',
                     margin: '30px 0',
-                    padding: '10px 10px',
-                    fontSize: '18px',
+                    padding: isMobile ? '7px 7px' :'10px 10px',
+                    fontSize: isMobile ? '15px' : '18px',
                     fontWeight: 500
                   }}
                 >

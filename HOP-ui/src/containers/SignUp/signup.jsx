@@ -9,6 +9,7 @@ import HopHeader from '../../components/header/header';
 import axios from "axios";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useMediaQuery } from '@mui/material';
 
 function SignUp() {
   const navigate = useNavigate()
@@ -23,6 +24,8 @@ function SignUp() {
   const [countryPhoneCode, setCountryPhoneCode] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+
+  const isMobile = useMediaQuery('(max-width:769px)');
 
   const handleCountryChange = (country) => {
     setCountryPhoneCode(country.callingCodes[0])
@@ -59,16 +62,33 @@ function SignUp() {
   return (
     <Box style={{
       display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', backgroundImage: `url(${BackgroundDesign})`, backgroundSize: 'cover', backgroundPosition: 'center', fontFamily:
-        'system-ui', padding: '30px 0'
+        'system-ui', padding: isMobile ? '0' : '30px 0',
     }}>
-      <Box style={{ display: 'flex', justifyContent: 'center', backgroundColor: 'white', width: '40%', borderRadius: '20px' }}>
-        <Box style={{ width: '75%' }}>
+
+      <Box style={{
+        display: 'flex',
+        justifyContent: 'center',
+        backgroundColor: 'white',
+        width: isMobile ? '100%' : '40%',
+        borderRadius: isMobile ? 'none' : '20px',
+        padding: isMobile ? '16px' : '0px',
+      }}>
+        <Box style={{ width: isMobile ? '100%' : '75%' }}>
 
           <HopHeader />
 
           <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <Typography variant='h6' style={{ color: '#1A237E', fontWeight: 600 }}>Get Started</Typography>
-            <Typography variant='p' style={{ color: '#8B8B8B', fontWeight: 600 }}>
+            <Typography variant='h6' style={{ color: '#1A237E', fontWeight: 600, fontSize: isMobile ? '17px' : ' ', }}>Get Started</Typography>
+            <Typography
+              variant='p'
+              style=
+              {{
+                color: '#8B8B8B',
+                fontWeight: 600,
+                margin: isMobile ? '0 35px' : '0',
+                textAlign: isMobile ? 'center' : 'none', 
+                fontSize: isMobile ? '15px' : ' ',
+              }}>
               Fast-track your form submission and get back to what matters.
             </Typography>
           </Box>
@@ -83,7 +103,7 @@ function SignUp() {
             onSubmit={handleSubmit}
           >
             <div style={{ marginBottom: '15px' }}>
-              <InputLabel sx={{ color: 'rgba(76, 76, 76, 1)', marginBottom: '3px' }}>First Name</InputLabel>
+              <InputLabel sx={{ color: '#4C4C4C', marginBottom: '3px' }}>First Name</InputLabel>
               <TextField
                 required
                 variant='outlined'
@@ -179,7 +199,7 @@ function SignUp() {
                 InputProps={{
                   startAdornment: countryPhoneCode && (
                     <InputAdornment position="start">
-                      <span style={{color:'black', fontWeight:500}}>{`+${countryPhoneCode}`}</span>
+                      <span style={{ color: 'black', fontWeight: 500 }}>{`+${countryPhoneCode}`}</span>
                     </InputAdornment>
                   ),
                 }}
@@ -278,8 +298,8 @@ function SignUp() {
                   textTransform: 'none',
                   width: '100%',
                   margin: '10px 0',
-                  padding: '10px 10px',
-                  fontSize: '18px',
+                  padding: isMobile ? '7px 7px' :'10px 10px',
+                  fontSize: isMobile ? '15px' : '18px',
                   fontWeight: 500
                 }}
               >
@@ -288,7 +308,7 @@ function SignUp() {
             </div>
           </Box>
           <Box sx={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
-            <p style={{ fontSize: '17px' }}>Already have an account? <span onClick={() => navigate('/login')} style={{ color: 'rgba(255, 87, 34, 1)', fontWeight: 600, cursor: 'pointer' }}>Login Here</span></p>
+            <p style={{ fontSize: isMobile ? '14px' : '17px' }}>Already have an account? <span onClick={() => navigate('/login')} style={{ color: 'rgba(255, 87, 34, 1)', fontWeight: 600, cursor: 'pointer' }}>Login Here</span></p>
           </Box>
         </Box>
       </Box>

@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Typography, Button,  TextField, InputLabel } from '@mui/material';
-import { IconButton, InputAdornment} from '@mui/material';
+import { Box, Typography, Button, TextField, InputLabel } from '@mui/material';
+import { IconButton, InputAdornment } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import BackgroundDesign from '../../assets/Landing_Page/Sign Up.png'
 import HopHeader from '../../components/header/header';
-import { toast } from 'react-toastify'
+import { toast } from 'react-toastify';
+import { useMediaQuery } from '@mui/material'
 
 function Login() {
   const navigate = useNavigate()
   const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('') 
-  const [showPassword, setShowPassword] = useState(false)
- 
+  const [password, setPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false);
+
+  const isMobile = useMediaQuery('(max-width:769px)');
+
   const handleLogin = (event) => {
     event.preventDefault()
     if (!email || !password) {
@@ -27,17 +30,38 @@ function Login() {
 
   return (
     <Box style={{
-      display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100vh', backgroundImage: `url(${BackgroundDesign})`, backgroundSize: 'cover', backgroundPosition: 'center', fontFamily:
-        'system-ui'
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: '100%',
+      height: isMobile ? 'auto' : '100vh',
+      backgroundImage: `url(${BackgroundDesign})`,
+      backgroundSize: 'cover', backgroundPosition: 'center',
+      fontFamily: 'system-ui',
     }}>
-      <Box style={{ display: 'flex', justifyContent: 'center', backgroundColor: 'white', width: '40%', borderRadius: '20px' }}>
-        <Box style={{ width: '75%' }}>
+      <Box style=
+        {{
+          display: 'flex',
+          justifyContent: 'center',
+          backgroundColor: 'white',
+          width: isMobile ? '100%' : '40%',
+          borderRadius: isMobile ? 'none' : '20px',
+          padding: isMobile ? '16px' : '0px',
+        }}>
+        <Box style={{ width: isMobile ? '100%' : '75%' }}>
 
           <HopHeader />
 
           <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <Typography variant='h6' style={{ color: '#1A237E', fontWeight: 600 }}>Welcome Back</Typography>
-            <Typography variant='p' style={{ color: '#8B8B8B', fontWeight: 600 }}>
+            <Typography variant='p'
+              style={{
+                color: '#8B8B8B',
+                fontWeight: 600,
+                margin: isMobile ? '0 35px' : '0',
+                textAlign: isMobile ? 'center' : 'none',
+                fontSize: isMobile ? '15px' : ' ',
+              }}>
               Enter your registered email address & password to login
             </Typography>
           </Box>
@@ -99,8 +123,8 @@ function Login() {
               />
             </div>
             <div>
-              <Box sx={{display:'flex', justifyContent:'flex-end'}}>
-                <Typography component='p' style={{ color: 'rgba(255, 87, 34, 1)', fontWeight: 500, cursor: 'pointer', marginBottom:'24px',marginTop:'1px !important' }}>Forgot Password</Typography>
+              <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <Typography component='p' style={{ color: 'rgba(255, 87, 34, 1)', fontWeight: 500, cursor: 'pointer', marginBottom: '24px', marginTop: '1px !important' }}>Forgot Password</Typography>
               </Box>
             </div>
             <div>
@@ -112,8 +136,8 @@ function Login() {
                   textTransform: 'none',
                   width: '100%',
                   margin: '10px 0',
-                  padding: '10px 10px',
-                  fontSize: '18px',
+                  padding: isMobile ? '7px 7px' :'10px 10px',
+                  fontSize: isMobile ? '15px' : '18px',
                   fontWeight: 500
                 }}
               >
