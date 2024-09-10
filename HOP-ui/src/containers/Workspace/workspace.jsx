@@ -8,9 +8,10 @@ import HopLogo from '../../assets/Hop-Logo.png'
 import CloseIcon from '../../assets/Landing_Page/Shape.png'
 import SuccessAnimation from '../../assets/Animation Container.png'
 import { useMediaQuery } from '@mui/material'
+import { useNavigate } from 'react-router-dom';
 
 function WorkSpace() {
-
+  const navigate = useNavigate()
   const [companyName, setCompanyName] = useState('')
   const [industryName, setIndustryName] = useState('')
   const [teamSize, setTeamSize] = useState('')
@@ -30,10 +31,30 @@ function WorkSpace() {
       return;
     }
     setSuccessPopupOpen(true)
-    console.log("submit");
-  };
 
+    const workspaceData = {
+      companyName,
+      industryName,
+      teamSize,
+      companyDesc,
+    }
 
+    const workspaceOptions = {
+      method: 'POST',
+      // url: global.config.ROOTURL.prod + '',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: workspaceData
+    };
+
+    axios(workspaceOptions)
+      .then((data) => {
+        console.log(data)
+        navigate('./')
+      })
+      .catch((err) => console.log(err))
+  }
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(7px)', position: 'relative' }}>

@@ -6,12 +6,12 @@ import GoogleLogo from '../../assets/Google Logo.png';
 import { useNavigate } from 'react-router-dom';
 import { useMediaQuery } from '@mui/material';
 import './index.scss'
+import { useEffect } from 'react';
 
 function LangingPage() {
   const navigate = useNavigate()
 
   const isMobile = useMediaQuery('(max-width:769px)')
-
   return (
     <Box style={{ paddingTop:'20px', height: '100%', width: '100%', backgroundColor: '#0F144A' }}>
       <Box

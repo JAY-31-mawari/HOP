@@ -37,14 +37,40 @@ function SignUp() {
       toast.error('Please fill all the required information');
       return;
     }
+    navigate('/create-workspace')
 
     if (password !== confirmPassword) {
       toast.error(`Passwords don't match`);
       return;
     }
 
-    console.log("submit");
-    navigate('/create-workspace')
+    const signUpData = {
+      firstName,
+      lastName,
+      email,
+      country,
+      phoneNo,
+      password,
+      confirmPassword
+    }
+
+    const signUpOptions = {
+      method: "POST",
+      // url: global.config.ROOTURL.prod + '',
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        //Authorization: "Bearer " + accessToken,
+      },
+      data: signUpData,
+    }
+
+    axios(signUpOptions)
+      .then((data) => {
+        console.log(data)
+        navigate('/create-workspace')
+      })
+      .catch((err) => console.log(err))
   };
 
   const trigger = () => {
@@ -86,7 +112,7 @@ function SignUp() {
                 color: '#8B8B8B',
                 fontWeight: 600,
                 margin: isMobile ? '0 35px' : '0',
-                textAlign: isMobile ? 'center' : 'none', 
+                textAlign: isMobile ? 'center' : 'none',
                 fontSize: isMobile ? '15px' : ' ',
               }}>
               Fast-track your form submission and get back to what matters.
@@ -192,6 +218,7 @@ function SignUp() {
               <InputLabel sx={{ color: '#4C4C4C', marginBottom: '3px' }}>WhatsApp Number</InputLabel>
               <TextField
                 required
+                type='number'
                 variant="outlined"
                 value={phoneNo}
                 placeholder='9337582674'
@@ -298,7 +325,7 @@ function SignUp() {
                   textTransform: 'none',
                   width: '100%',
                   margin: '10px 0',
-                  padding: isMobile ? '7px 7px' :'10px 10px',
+                  padding: isMobile ? '7px 7px' : '10px 10px',
                   fontSize: isMobile ? '15px' : '18px',
                   fontWeight: 500
                 }}

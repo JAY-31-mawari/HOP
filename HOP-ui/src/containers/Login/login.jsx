@@ -7,6 +7,7 @@ import BackgroundDesign from '../../assets/Landing_Page/Sign Up.png'
 import HopHeader from '../../components/header/header';
 import { toast } from 'react-toastify';
 import { useMediaQuery } from '@mui/material'
+import { Global } from '@emotion/react';
 
 function Login() {
   const navigate = useNavigate()
@@ -22,9 +23,28 @@ function Login() {
       toast.error('Please fill all the required information');
       return;
     }
-
-    console.log("submit");
     navigate('/create-workspace')
+
+    const loginData = {
+      email,
+      password,
+    }
+
+    const loginOptions = {
+      method: 'POST',
+      // url: global.config.ROOTURL.prod + '',
+      headers: {
+        "Content-Type": 'application/json',
+      },
+      data: loginData
+    }
+
+    axios(loginOptions)
+      .then((data) => {
+        console.log(data)
+        navigate('/create-workspace')
+      })
+      .catch((err) => console.log(err))
   };
 
 
@@ -136,7 +156,7 @@ function Login() {
                   textTransform: 'none',
                   width: '100%',
                   margin: '10px 0',
-                  padding: isMobile ? '7px 7px' :'10px 10px',
+                  padding: isMobile ? '7px 7px' : '10px 10px',
                   fontSize: isMobile ? '15px' : '18px',
                   fontWeight: 500
                 }}

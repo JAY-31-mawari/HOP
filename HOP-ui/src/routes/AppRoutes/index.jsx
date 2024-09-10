@@ -5,6 +5,7 @@ import LandingPage from '../../containers/LandingPage/landingPage';
 import SignUp from '../../containers/SignUp/signup'
 import SignIn from '../../containers/Login/login';
 import WorkSpace from '../../containers/Workspace/workspace';
+import Dashboard from '../../containers/Dashboard/dashboard'
 
 function AppRoutes() {
     return (
@@ -34,6 +35,13 @@ function AppRoutes() {
                 path={'/create-workspace'}
                 element={
                     <WorkSpace />
+                }
+            />
+
+            <Route 
+                path={'/dashboard'}
+                element={
+                    <Dashboard />
                 }
             />
         </Routes>
